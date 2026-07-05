@@ -1,0 +1,87 @@
+v {xschem version=3.4.8RC file_version=1.3}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+spectre_format="@name ( @pinlist ) @symname"
+template="name=x1"
+}
+V {}
+S {}
+F {}
+E {}
+N -500 -170 -500 -160 {lab=0}
+N -430 -170 -430 -160 {lab=0}
+N -350 -170 -350 -160 {lab=0}
+N -280 -170 -280 -160 {lab=0}
+N -500 -240 -500 -230 {lab=VDD}
+N -430 -240 -430 -230 {lab=S}
+N -350 -240 -350 -230 {lab=W0}
+N -280 -240 -280 -230 {lab=W1}
+N -180 10 -140 10 {lab=#net1}
+N -140 -10 -140 10 {lab=#net1}
+N -140 -10 -80 -10 {lab=#net1}
+N 220 -120 270 -120 {lab=#net2}
+N 270 -120 270 -70 {lab=#net2}
+N 270 -50 270 10 {lab=#net3}
+N 220 10 270 10 {lab=#net3}
+N -520 -40 -480 -40 {lab=S}
+N -480 -40 -480 -10 {lab=S}
+N -480 -90 -480 -40 {lab=S}
+N -480 -90 -140 -90 {lab=S}
+N -140 -140 -140 -90 {lab=S}
+N -140 -140 -80 -140 {lab=S}
+N -100 10 -100 40 {lab=W0}
+N -100 10 -80 10 {lab=W0}
+N 210 -50 210 -30 {lab=VDD}
+N 210 -30 220 -30 {lab=VDD}
+N 220 -30 220 -10 {lab=VDD}
+N -170 -40 -170 -10 {lab=VDD}
+N -180 -10 -170 -10 {lab=VDD}
+N 580 -100 580 -70 {lab=VDD}
+N 570 -70 580 -70 {lab=VDD}
+N -180 30 -180 50 {lab=0}
+N 220 30 220 50 {lab=0}
+N 570 -30 570 10 {lab=0}
+N 220 -100 220 -90 {lab=0}
+N 230 -160 230 -140 {lab=VDD}
+N 220 -140 230 -140 {lab=VDD}
+N 570 -50 640 -50 {lab=#net4}
+N -100 -120 -80 -120 {lab=W1}
+C {AND.sym} 70 -120 0 0 {name=x1}
+C {OR.sym} 420 -50 0 0 {name=x2}
+C {AND.sym} 70 10 0 0 {name=x3}
+C {NOT.sym} -330 10 0 0 {name=x4}
+C {vsource.sym} -500 -200 0 0 {name=V1 value=1.8 savecurrent=false}
+C {vsource.sym} -430 -200 0 0 {name=V2 value=PULSE(0 1.8 0 1n 1n 40n 80n) savecurrent=false}
+C {vsource.sym} -350 -200 0 0 {name=V3 value=PULSE (0 1.8 0 1n 1n 10n 20n) savecurrent=false}
+C {vsource.sym} -280 -200 0 0 {name=V4 value=PULSE(0 1.8 0 1n 1n 20n 40n) savecurrent=false}
+C {gnd.sym} -500 -160 0 0 {name=l5 lab=0}
+C {gnd.sym} -430 -160 0 0 {name=l6 lab=0}
+C {gnd.sym} -350 -160 0 0 {name=l7 lab=0}
+C {gnd.sym} -280 -160 0 0 {name=l8 lab=0}
+C {lab_pin.sym} -500 -240 1 0 {name=p7 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -430 -240 1 0 {name=p9 sig_type=std_logic lab=S}
+C {lab_pin.sym} -350 -240 1 0 {name=p10 sig_type=std_logic lab=W0}
+C {lab_pin.sym} -280 -240 1 0 {name=p11 sig_type=std_logic lab=W1}
+C {lab_pin.sym} -520 -40 0 0 {name=p1 sig_type=std_logic lab=S}
+C {lab_pin.sym} -100 40 0 0 {name=p2 sig_type=std_logic lab=W0}
+C {lab_pin.sym} -100 -120 0 0 {name=p3 sig_type=std_logic lab=W1}
+C {lab_pin.sym} 230 -160 2 0 {name=p4 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 210 -50 2 0 {name=p5 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} -170 -40 2 0 {name=p6 sig_type=std_logic lab=VDD}
+C {lab_pin.sym} 580 -100 2 0 {name=p8 sig_type=std_logic lab=VDD}
+C {gnd.sym} -180 50 0 0 {name=l1 lab=0}
+C {gnd.sym} 220 50 0 0 {name=l2 lab=0}
+C {gnd.sym} 570 0 0 0 {name=l3 lab=0}
+C {gnd.sym} 220 -90 0 0 {name=l4 lab=0}
+C {code.sym} -30 -320 0 0 {name=s1 
+only_toplevel=false 
+value="
+.include /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice.tt
+.train 0.1n 120n
+
+.control
+  run
+  set pswinwidth=2
+  plot v(S) v(W0) v(W1) v(Y)
+.endc"}

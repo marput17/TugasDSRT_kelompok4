@@ -1,0 +1,33 @@
+* NGSPICE file created from XUM21.ext - technology: sky130A
+
+.subckt sky130_fd_pr__pfet_01v8_YJL4GZ B D S G
+X0 S G D B sky130_fd_pr__pfet_01v8 ad=0.29 pd=2.58 as=0.29 ps=2.58 w=1 l=0.15
+.ends
+
+.subckt sky130_fd_pr__nfet_01v8_LB55D5 B D S G
+X0 S G D B sky130_fd_pr__nfet_01v8 ad=0.29 pd=2.58 as=0.29 ps=2.58 w=1 l=0.15
+.ends
+
+.subckt XUM21 OUT W1
+XXM12 XM12/B XM1/D XM12/S XM8/D sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM13 XM13/B XM6/D XM6/G XM3/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM14 VSUBS XM14/D XM21/D XM3/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM15 VSUBS XM20/S OUT XM4/S sky130_fd_pr__nfet_01v8_LB55D5
+XXM16 VSUBS XM4/S XM20/S XM7/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM17 XM17/B XM7/S OUT XM4/S sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM1 XM1/B XM1/D XM8/D XM9/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM2 VSUBS XM2/D XM9/G XM3/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM3 XM3/B XM3/D XM9/G XM3/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM4 XM4/B XM7/D XM4/S XM4/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM5 XM5/B XM6/D XM6/G XM5/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM6 XM6/B XM6/D XM7/G XM6/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM7 XM7/B XM7/D XM7/S XM7/G sky130_fd_pr__pfet_01v8_YJL4GZ
+XXM9 VSUBS XM9/D XM9/S XM9/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM8 VSUBS XM8/D XM9/S W1 sky130_fd_pr__nfet_01v8_LB55D5
+XXM20 VSUBS XM4/S XM20/S XM4/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM21 VSUBS XM21/D XM7/G XM6/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM10 VSUBS XM14/D XM6/G XM5/G sky130_fd_pr__nfet_01v8_LB55D5
+XXM22 VSUBS XM9/D XM4/G XM8/D sky130_fd_pr__nfet_01v8_LB55D5
+XXM11 XM11/B XM1/D XM8/D W1 sky130_fd_pr__pfet_01v8_YJL4GZ
+.ends
+
